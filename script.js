@@ -1,5 +1,5 @@
 //book objects array
-const myLibrary = [];
+let myLibrary = [];
 
 //the constructor function
 function Book(title, author, pages, status) {
@@ -9,13 +9,18 @@ function Book(title, author, pages, status) {
     this.status = status
 }
 
-let newBook = new Book('1', '2', '3', '4');
-
 //take input and store new book object into an array
 function addBookToLibrary() {
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let pages = document.getElementById("pages").value;
+    let status = document.getElementById("status").value;
+
+    let newBook = new Book(title, author, pages, status)
     myLibrary.push(newBook);
+    console.log(myLibrary);
 }
-addBookToLibrary();
+
 
 
 
