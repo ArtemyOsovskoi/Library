@@ -13,7 +13,8 @@
         <h1>Library</h1>
     </header>
     <div id="formSection">
-        <form id="form">
+        <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
+        <form id="form" onsubmit="return false"> 
             <p>
                 <label for="title">Title</label>
                 <br>
@@ -41,8 +42,7 @@
                     <option value="readingNow">Reading Now</option>
                 </select>
             </p>
-
-
+            <input type="submit" id="addBookButton" value="Add Book" onclick="addBookToLibrary();"></input>
         </form>
     </div>
 </div>
