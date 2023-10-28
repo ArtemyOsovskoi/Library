@@ -10,18 +10,165 @@ function Book(title, author, pages, status) {
 }
 
 //take input and store new book object into an array
-function addBookToLibrary() {
+let addBookButton = document.querySelector("#addBookButton");
+addBookButton.addEventListener("click", () => {
+    //take values from form input fields
     let title = document.getElementById("title").value;
     let author = document.getElementById("author").value;
     let pages = document.getElementById("pages").value;
     let status = document.getElementById("status").value;
-
+    //pass values to the new book function and create new book object
     let newBook = new Book(title, author, pages, status)
+    //store new book object to library array
     myLibrary.push(newBook);
     console.log(myLibrary);
+    //display new book object on the page
+    displayBook(); 
+}); 
+
+//loop through the array and display each book in table on the page
+function displayBook() {
+    //access table
+    let table = document.querySelector("#table");
+    //create new row in table 
+    let newRow = table.insertRow(-1);
+    //get last element (object) from array
+    let lastArrayElement = myLibrary.slice(-1)[0];
+
+    //add new cells to the newRow 
+    cellOne = newRow.insertCell(0);
+    cellTwo = newRow.insertCell(1);
+    cellThree = newRow.insertCell(2);
+    cellFour = newRow.insertCell(3);
+    //cells for delete and change status buttons
+    cellFive = newRow.insertCell(4);
+    cellSix = newRow.insertCell(5);
+
+    //add values of last object from array to created cells and display them on the page
+    cellOne.appendChild(document.createTextNode(lastArrayElement.title));
+    cellTwo.appendChild(document.createTextNode(lastArrayElement.author));
+    cellThree.appendChild(document.createTextNode(lastArrayElement.pages));
+    cellFour.appendChild(document.createTextNode(lastArrayElement.status));
+    cellFive.appendChild(removeButton);
+    cellSix.appendChild(changeStatusButton);
 }
 
 
+//show popup form window - input the details for the new book
+const showFormWindow = document.getElementById("formPopup");
+const dialog = document.getElementById("dialog");
+showFormWindow.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+//close popup form window
+const closeButton = document.getElementById("closeButton");
+closeButton.addEventListener("click", () => {
+    dialog.close();
+});
+
+//button on each book’s display to remove the book from the library
+let removeButton = document.createElement("button");
+    removeButton.addEventListener("click", () => {
+        //clear DOM
+    });
+removeButton.textContent = "Remove";
+
+//button on each book’s display to change its read status
+let changeStatusButton = document.createElement("button");
+    changeStatusButton.addEventListener("click", () => {
+        //change book status
+    });
+changeStatusButton.textContent = "Change status";
+
+
+
+
+/* 27.10.23 - сделал много и вполне рабочее приложение, но надо переделать с использованием циклов
+т.к. это в целом удобнее и будет легче удалять строку книги из таблицы - плюс просто надо лучше знать циклы
+этим и займусь дальше */
+
+/* other logic used -> may use later: */
+//loop through the array and display each book in table on the page <--- WORKING SOLUTION without LOOP
+/* function displayBook() {
+    //access table
+    let table = document.querySelector("#table");
+    //create new row in table 
+    let newRow = table.insertRow(-1);
+    //get last element (object) from array
+    let lastArrayElement = myLibrary.slice(-1)[0];
+
+    //add new cells to the newRow 
+    cellOne = newRow.insertCell(0);
+    cellTwo = newRow.insertCell(1);
+    cellThree = newRow.insertCell(2);
+    cellFour = newRow.insertCell(3);
+
+    //add values of last object from array to created cells in table 
+    //and display them on the page
+    cellOne.appendChild(document.createTextNode(lastArrayElement.title));
+    cellTwo.appendChild(document.createTextNode(lastArrayElement.author));
+    cellThree.appendChild(document.createTextNode(lastArrayElement.pages));
+    cellFour.appendChild(document.createTextNode(lastArrayElement.status));
+} */
+
+
+
+
+
+
+    //loop through array
+/*     for(i = 0; i < myLibrary.length; i++) {
+        let newRow = table.insertRow(-1);
+        let lastArray = myLibrary.slice(-1)[0];
+        //add new cells to the row
+        cell1 = newRow.insertCell(0);
+        cell2 = newRow.insertCell(1);
+        cell3 = newRow.insertCell(2);
+        cell4 = newRow.insertCell(3);
+        //add object values from array to created cells in table
+        if (myLibrary.length === 1) {
+            cell1.appendChild(document.createTextNode(myLibrary[i].title));
+            cell2.appendChild(document.createTextNode(myLibrary[i].author));
+            cell3.appendChild(document.createTextNode(myLibrary[i].pages));
+            cell4.appendChild(document.createTextNode(myLibrary[i].status));
+        } else {
+            cell1.appendChild(document.createTextNode(lastArray.title));
+            cell2.appendChild(document.createTextNode(lastArray.author));
+            cell3.appendChild(document.createTextNode(lastArray.pages));
+            cell4.appendChild(document.createTextNode(lastArray.status));
+        }
+    } */
+
+
+/*     let container = document.createElement("div");
+    document.body.appendChild(container);
+
+    let card = document.createElement("div");
+    let cardTitle = document.createElement("h3");
+    let cardAuthor = document.createElement("p");
+    let cardPages = document.createElement("p");
+    let cardStatus = document.createElement("p");
+
+    let titleContent = document.createTextNode(title);
+    let authorContent = document.createTextNode(author);
+    let pagesContent = document.createTextNode(pages);
+    let statusContent = document.createTextNode(status);
+
+    let finTitle = cardTitle.appendChild(titleContent);
+    let finAuthor = cardAuthor.appendChild(authorContent);
+    let finPages = cardPages.appendChild(pagesContent);
+    let finStatus = cardStatus.appendChild(statusContent);
+
+    container.appendChild(card);
+    card.appendChild(finTitle);
+    card.appendChild(finAuthor);  
+    card.appendChild(finPages);  
+    card.appendChild(finStatus);
+    
+    card.style.width = "2rem";
+    card.style.background = "red";
+    card.style.padding = "2rem"; */
 
 
 
@@ -36,9 +183,10 @@ function addBookToLibrary() {
 
 
 
-
-
-
+/* 25.10.23 смог сделать функцию чтобы принимала инпут - все решила заплатка 
+в виде onsubmit = false в теге формы html, иначе массив постоянно обновлялся как пустой. 
+Теперь нужно написать функцию которая просматривает массив и отображает каждую книгу на странице.
+ */
 
 /* 23.10.23 после пары часов работы, понял что надо снова почитать теорию и вернутся
     1) Перечитать урок про объекты и конструкторы, конспект см. и вспомнить как хранить и создавать объекты.
