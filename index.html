@@ -12,9 +12,30 @@
     <header>
         <h1>Library</h1>
     </header>
-    <div id="formSection">
+    <div id="formTableContainer">
+        <form id="tableForm" onsubmit="return false" >
+            <table id="table"> 
+                <thead> 
+                    <tr>
+                        <th id="titleHeading">Title:</th> 
+                        <th id="authorHeading">Author:</th> 
+                        <th id="pagesHeading">Pages:</th> 
+                        <th id="statusHeading">Status:</th> 
+                    </tr> 
+                </thead> 
+                <tbody id="rows">
+
+                </tbody>
+            </table>
+            <input type="submit" id="formPopup" value="New Book"></input>
+        </form>
+    </div>
+
+
+    <div id="formAddBookContainer">
+        <dialog id="dialog">
         <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
-        <form id="form" onsubmit="return false"> 
+        <form id="form" method="dialog" onsubmit="return false"> 
             <p>
                 <label for="title">Title</label>
                 <br>
@@ -42,8 +63,13 @@
                     <option value="readingNow">Reading Now</option>
                 </select>
             </p>
-            <input type="submit" id="addBookButton" value="Add Book" onclick="addBookToLibrary();"></input>
+            <div>
+                <button value="cancel" id="closeButton" formmethod="dialog">Close</button>
+                <input type="submit" id="addBookButton" value="Add Book"></input>
+            </div>
+            
         </form>
+        </dialog>
     </div>
 </div>
 </body>
