@@ -21,13 +21,46 @@ addBookButton.addEventListener("click", () => {
     let newBook = new Book(title, author, pages, status)
     //store new book object to library array
     myLibrary.push(newBook);
-    console.log(myLibrary);
     //display new book object on the page
-    displayBook(); 
+    displayBook(title, author, pages, status); 
 }); 
 
 //loop through the array and display each book in table on the page
-function displayBook() {
+function displayBook(title, author, pages, status) {
+    for(i = 0; i < myLibrary.length; i++) {
+        let container = document.createElement("div");
+        document.body.appendChild(container);
+        container.style.textAlign = "center";
+
+        //create card html elements
+        let card = document.createElement("div");  
+        let cardTitle = document.createElement("h3");
+        let cardAuthor = document.createElement("p");
+        let cardPages = document.createElement("p");
+        let cardStatus = document.createElement("p");
+
+        //card content
+        let titleContent = document.createTextNode(title);
+        let authorContent = document.createTextNode(author);
+        let pagesContent = document.createTextNode(pages);
+        let statusContent = document.createTextNode(status);
+
+        cardTitle.appendChild(titleContent);
+        cardAuthor.appendChild(authorContent);
+        cardPages.appendChild(pagesContent);
+        cardStatus.appendChild(statusContent);
+
+        card.appendChild(cardTitle);
+        card.appendChild(cardAuthor);
+        card.appendChild(cardPages);
+        card.appendChild(cardStatus);
+        container.appendChild(card);
+    }
+}
+
+
+
+/* function displayBook() { //(table)working solution WITHOUT suing loop
     //access table
     let table = document.querySelector("#table");
     //create new row in table 
@@ -51,7 +84,7 @@ function displayBook() {
     cellFour.appendChild(document.createTextNode(lastArrayElement.status));
     cellFive.appendChild(removeButton);
     cellSix.appendChild(changeStatusButton);
-}
+} */
 
 
 //show popup form window - input the details for the new book
@@ -89,33 +122,6 @@ changeStatusButton.textContent = "Change status";
 этим и займусь дальше */
 
 /* other logic used -> may use later: */
-//loop through the array and display each book in table on the page <--- WORKING SOLUTION without LOOP
-/* function displayBook() {
-    //access table
-    let table = document.querySelector("#table");
-    //create new row in table 
-    let newRow = table.insertRow(-1);
-    //get last element (object) from array
-    let lastArrayElement = myLibrary.slice(-1)[0];
-
-    //add new cells to the newRow 
-    cellOne = newRow.insertCell(0);
-    cellTwo = newRow.insertCell(1);
-    cellThree = newRow.insertCell(2);
-    cellFour = newRow.insertCell(3);
-
-    //add values of last object from array to created cells in table 
-    //and display them on the page
-    cellOne.appendChild(document.createTextNode(lastArrayElement.title));
-    cellTwo.appendChild(document.createTextNode(lastArrayElement.author));
-    cellThree.appendChild(document.createTextNode(lastArrayElement.pages));
-    cellFour.appendChild(document.createTextNode(lastArrayElement.status));
-} */
-
-
-
-
-
 
     //loop through array
 /*     for(i = 0; i < myLibrary.length; i++) {
