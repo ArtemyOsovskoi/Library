@@ -22,41 +22,84 @@ addBookButton.addEventListener("click", () => {
     //store new book object to library array
     myLibrary.push(newBook);
     //display new book object on the page
-    displayBook(title, author, pages, status); 
+    displayBook(title, author, pages, status);
+    
 }); 
 
 //loop through the array and display each book in table on the page
-function displayBook(title, author, pages, status) {
-    for(i = 0; i < myLibrary.length; i++) {
-        let container = document.createElement("div");
-        document.body.appendChild(container);
-        container.style.textAlign = "center";
+function displayBook() {
+
+    const allBooks = document.getElementById("allBooks");
+    const bookCards = document.querySelectorAll('.bookCard');
+    bookCards.forEach(book => allBooks.removeChild(book));
+
+    for(i = 0; i < myLibrary.length; i++ ) {
+        createBook(myLibrary[i]);
+    }
+
+}
+
+function createBook(value) {
+        //button on each book’s display to remove the book from the library
+        let removeButton = document.createElement("button");
+        removeButton.addEventListener("click", () => {
+            //clear DOM
+        });
+        removeButton.textContent = "Remove";
+
+        //button on each book’s display to change its read status
+        let changeStatusButton = document.createElement("button");
+        changeStatusButton.addEventListener("click", () => {
+            //change book status
+        });
+        changeStatusButton.textContent = "Change status";
 
         //create card html elements
-        let card = document.createElement("div");  
+        let container = document.createElement("div");
+        container.classList.add('bookCard');
+        container.style.textAlign = "center";
+
         let cardTitle = document.createElement("h3");
         let cardAuthor = document.createElement("p");
         let cardPages = document.createElement("p");
         let cardStatus = document.createElement("p");
 
         //card content
-        let titleContent = document.createTextNode(title);
-        let authorContent = document.createTextNode(author);
-        let pagesContent = document.createTextNode(pages);
-        let statusContent = document.createTextNode(status);
+        let titleContent = document.createTextNode(value.title);
+        let authorContent = document.createTextNode(value.author);
+        let pagesContent = document.createTextNode(value.pages);
+        let statusContent = document.createTextNode(value.status);
 
         cardTitle.appendChild(titleContent);
         cardAuthor.appendChild(authorContent);
         cardPages.appendChild(pagesContent);
         cardStatus.appendChild(statusContent);
+        
+        container.appendChild(cardTitle);
+        container.appendChild(cardAuthor);
+        container.appendChild(cardPages);
+        container.appendChild(cardStatus);
+        container.appendChild(removeButton);
+        container.appendChild(changeStatusButton);
 
-        card.appendChild(cardTitle);
-        card.appendChild(cardAuthor);
-        card.appendChild(cardPages);
-        card.appendChild(cardStatus);
-        container.appendChild(card);
-    }
+        /* container.appendChild(card); */
+        
+        allBooks.appendChild(container);  
 }
+
+
+//show popup form window - input the details for the new book
+const showFormWindow = document.getElementById("formPopup");
+const dialog = document.getElementById("dialog");
+showFormWindow.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+//close popup form window
+const closeButton = document.getElementById("closeButton");
+closeButton.addEventListener("click", () => {
+    dialog.close();
+});
 
 
 
@@ -85,36 +128,6 @@ function displayBook(title, author, pages, status) {
     cellFive.appendChild(removeButton);
     cellSix.appendChild(changeStatusButton);
 } */
-
-
-//show popup form window - input the details for the new book
-const showFormWindow = document.getElementById("formPopup");
-const dialog = document.getElementById("dialog");
-showFormWindow.addEventListener("click", () => {
-  dialog.showModal();
-});
-
-//close popup form window
-const closeButton = document.getElementById("closeButton");
-closeButton.addEventListener("click", () => {
-    dialog.close();
-});
-
-//button on each book’s display to remove the book from the library
-let removeButton = document.createElement("button");
-    removeButton.addEventListener("click", () => {
-        //clear DOM
-    });
-removeButton.textContent = "Remove";
-
-//button on each book’s display to change its read status
-let changeStatusButton = document.createElement("button");
-    changeStatusButton.addEventListener("click", () => {
-        //change book status
-    });
-changeStatusButton.textContent = "Change status";
-
-
 
 
 /* 27.10.23 - сделал много и вполне рабочее приложение, но надо переделать с использованием циклов
