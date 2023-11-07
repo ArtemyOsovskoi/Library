@@ -26,24 +26,32 @@ addBookButton.addEventListener("click", () => {
     
 }); 
 
-//loop through the array and display each book in table on the page
+
+
+//loop through the array and display each book as a card on the page
 function displayBook() {
-
+    //remove repeating book elements
     const allBooks = document.getElementById("allBooks");
-    const bookCards = document.querySelectorAll('.bookCard');
-    bookCards.forEach(book => allBooks.removeChild(book));
-
+    const bookCards = document.querySelectorAll('.bookCard'); 
+    bookCards.forEach(book => {
+        allBooks.removeChild(book);
+    });
+    //execute createBook() until less than array length
     for(i = 0; i < myLibrary.length; i++ ) {
+        //pass array element (book object) as an argument to createBook function
         createBook(myLibrary[i]);
     }
-
 }
 
-function createBook(value) {
-        //button on each book’s display to remove the book from the library
+//create DOM book card elements
+function createBook(object) {
+
         let removeButton = document.createElement("button");
-        removeButton.addEventListener("click", () => {
+        removeButton.addEventListener("click", (book) => {
             //clear DOM
+            book.currentTarget.closest("div").remove();
+            //remove book from array
+            myLibrary.splice(myLibrary.indexOf(object), 1);
         });
         removeButton.textContent = "Remove";
 
@@ -56,7 +64,10 @@ function createBook(value) {
 
         //create card html elements
         let container = document.createElement("div");
-        container.classList.add('bookCard');
+        container.classList.add("bookCard");
+/*         //set data attribute corresponding to the library array index
+        container.setAttribute("data-bookIndex", [i]); */
+
         container.style.textAlign = "center";
 
         let cardTitle = document.createElement("h3");
@@ -65,10 +76,10 @@ function createBook(value) {
         let cardStatus = document.createElement("p");
 
         //card content
-        let titleContent = document.createTextNode(value.title);
-        let authorContent = document.createTextNode(value.author);
-        let pagesContent = document.createTextNode(value.pages);
-        let statusContent = document.createTextNode(value.status);
+        let titleContent = document.createTextNode(object.title);
+        let authorContent = document.createTextNode(object.author);
+        let pagesContent = document.createTextNode(object.pages);
+        let statusContent = document.createTextNode(object.status);
 
         cardTitle.appendChild(titleContent);
         cardAuthor.appendChild(authorContent);
@@ -83,19 +94,18 @@ function createBook(value) {
         container.appendChild(changeStatusButton);
 
         /* container.appendChild(card); */
-        
         allBooks.appendChild(container);  
 }
 
 
-//show popup form window - input the details for the new book
+//show form window - input the details for the new book
 const showFormWindow = document.getElementById("formPopup");
 const dialog = document.getElementById("dialog");
 showFormWindow.addEventListener("click", () => {
   dialog.showModal();
 });
 
-//close popup form window
+//close form window
 const closeButton = document.getElementById("closeButton");
 closeButton.addEventListener("click", () => {
     dialog.close();
@@ -129,6 +139,11 @@ closeButton.addEventListener("click", () => {
     cellSix.appendChild(changeStatusButton);
 } */
 
+
+/* 03.11.23 - теперь работает. обязательно понять КАК - смотри на 2 функции ниже, разберись во всем
+(основной прорыв был когда я вынес логику создания ДОМ элементов в отдельную функцию и оставил в
+цикле for() только эту отдельную функцию с аргументом массива и индексом [i] 
+- понять что как и почему работает (но работает, урра!)) */
 
 /* 27.10.23 - сделал много и вполне рабочее приложение, но надо переделать с использованием циклов
 т.к. это в целом удобнее и будет легче удалять строку книги из таблицы - плюс просто надо лучше знать циклы
@@ -188,16 +203,6 @@ closeButton.addEventListener("click", () => {
     card.style.width = "2rem";
     card.style.background = "red";
     card.style.padding = "2rem"; */
-
-
-
-
-
-
-
-
-
-
 
 
 
