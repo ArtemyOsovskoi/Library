@@ -6,3 +6,24 @@
     border: 1px solid black;
     padding: 2rem;
 }
+
+#allBooks {
+    display: flex;
+    gap: 16px;
+    margin-top: 1rem;
+}
+
+.bookCard {
+    border-radius: 15px;
+    background-color: rgb(230, 209, 170);
+}
+
+.bookCard > button {
+    border-radius: 10px;
+    border: none;
+    margin: 0.2rem;
+}
+
+.bookCard > button:hover {
+    cursor: pointer;
+}
