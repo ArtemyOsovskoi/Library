@@ -1,12 +1,31 @@
 //book objects array
-let myLibrary = [];
+let myLibrary = [
+    {
+        title: "The Lord of the Rings",
+        author: "JRR Tolkien",
+        pages: "423",
+        status: "Reading now"
+    },
+    {
+        title: "The Book",
+        author: "Someone",
+        pages: "449",
+        status: "Not read"
+    },
+    {
+        title: "Super Book 2",
+        author: "Cool guy",
+        pages: "223",
+        status: "Read"
+    }
+];
 
 //the constructor function
 function Book(title, author, pages, status) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.status = status
+    this.title = title;
+    this.author = author;
+    this.pages = pages + "p.";
+    this.status = status;
 }
 
 //take input and store new book object into an array
@@ -26,8 +45,6 @@ addBookButton.addEventListener("click", () => {
     
 }); 
 
-
-
 //loop through the array and display each book as a card on the page
 function displayBook() {
     //remove repeating book elements
@@ -43,6 +60,8 @@ function displayBook() {
     }
 }
 
+/* displayBook();  *///testing DELETE LATER
+
 //create DOM book card elements
 function createBook(object) {
     let removeButton = document.createElement("button");
@@ -53,31 +72,15 @@ function createBook(object) {
         myLibrary.splice(myLibrary.indexOf(object), 1);
     });
     removeButton.textContent = "Remove";
+    removeButton.classList.add("removeButton");
 
     let changeStatusButton = document.createElement("button");
     changeStatusButton.addEventListener("click", () => {
-            //change book status
-/*         создайте функцию, которая переключает статус чтения книги 
-            в экземпляре прототипа книги. 
-        по нажатию кнопки нужно переключить статус книги
-            то есть нужно переключить value html тега select (#status)
-        You need to find a particular book by its unique identifier, 
-        and then call its toggle read status function. */
-        
+            //change book status       
         let cardBookStatus = document.querySelector(".cardBookStatus");
-        
         if (object.status === "Read") {
-            //add text content to the card p element
             cardBookStatus.textContent = "Not read";
-            //change object property value
             object.status = "Not read";           
-/*             let checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.setAttribute("id", "checkbox");
-            let checkboxId = document.getElementById("checkbox");
-            if (checkboxId == null) {       
-                container.appendChild(checkbox);
-            } */
         } else { 
             cardBookStatus.textContent = "Read";
             object.status = "Read";
@@ -87,13 +90,13 @@ function createBook(object) {
 
     });
     changeStatusButton.textContent = "Change status";
-    
+    changeStatusButton.classList.add("changeStatusButton");
+
     //create card html elements
     let container = document.createElement("div");
     container.classList.add("bookCard");
         //set data attribute corresponding to the library array index
     //container.setAttribute("data-bookIndex", [i]); 
-
     container.style.textAlign = "center";
 
     let cardTitle = document.createElement("h3");
@@ -129,8 +132,6 @@ function createBook(object) {
     container.appendChild(removeButton);
     container.appendChild(changeStatusButton);
 
-    
-    /* container.appendChild(card); */
     allBooks.appendChild(container);
 
     if (object.status === "Not read") {
