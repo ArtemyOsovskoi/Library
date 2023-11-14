@@ -1,29 +1,246 @@
-#addBookButton {
-    padding: 1em;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-#table {
-    border: 1px solid black;
-    padding: 2rem;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-#allBooks {
+html {
+    background-color: #f9f9f9;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Header */
+
+header {
+    padding: 3rem;
+    background-color: #f9f9f9; 
+    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.1);
+
+}
+
+#logoContainer {
     display: flex;
-    gap: 16px;
+    font-size: 2.5em;
+    font-weight: bold;
+    align-items: center;
+    gap: 5px;
+}
+
+#bookLogo {
+    width: 60px;
+    height: 60px;
+}
+
+/* Main */
+
+#formPopup {
+    padding: 1.2rem 3rem 1.2rem 3rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: 0.3s;
+    background-color: #a6e4e7; 
+}
+
+#formPopup:hover {
+    cursor: pointer;
+    background-color: lightgreen;
+    box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#popupButtonContainer {
+    display: flex;
+    justify-content: center;
     margin-top: 1rem;
 }
 
+#addBookButton {
+    padding: 1rem;
+}
+
+#dialog {
+    /* display: flex; */
+    margin-top: 9rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    font-size: 1.4em;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);   
+    background-color: #ebcbae;
+}
+
+#dialog > form {
+    display: flex;
+    /* gap: 10px; */
+    flex-direction: column;
+    background-color: white;
+}
+
+#dialog > form > * {
+    background-color: #ebcbae;
+}
+
+form > p > * {
+    border: none;
+    border-radius: 5px;
+}
+
+input {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+#formButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#addBookButton {
+    background-color: #a6e4e7; 
+    border: none;
+    border-radius: 5px;
+    padding: 1.5rem;
+    transition: 0.3s;
+}
+
+#addBookButton:hover{
+    cursor: pointer;
+    background-color: lightgreen;
+    box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.1);  
+}
+
+#closeButton {
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+    transition: 0.3s;
+}
+
+#closeButton:hover{
+    cursor: pointer;
+    box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.1);
+    background-color: lightcoral;
+}
+
+#allBooks {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    /* grid-template-rows: repeat(auto-fill, 240px); */
+    gap: 16px;
+    margin-top: 1rem;
+    
+}
+
+main {
+    padding-left: 4rem;
+    padding-right: 4rem;
+    
+}
+
 .bookCard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     border-radius: 15px;
-    background-color: rgb(230, 209, 170);
+    background-color: #ebcbae;
+    padding: 2rem 1rem 2rem 1rem;
+    font-size: 1.4em;
+
 }
 
 .bookCard > button {
     border-radius: 10px;
     border: none;
     margin: 0.2rem;
+    padding: 1rem 2rem 1rem 2rem;
+    transition: 0.3s;
 }
 
 .bookCard > button:hover {
     cursor: pointer;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.removeButton:hover {
+    background-color: lightcoral;
+}
+
+.changeStatusButton:hover {
+    background-color:  lightgreen;
+}
+
+/* Footer */
+
+footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.footer {
+    display: flex;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.footer a {
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #F05454;
+}
+
+.githubicon {
+    background-color: transparent;
+    margin-left: 10px;
 }
