@@ -6,14 +6,23 @@
     <title>Library</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
 <div id="main">
     <header>
-        <h1>Library</h1>
+        <div id="logoContainer">
+            <img src="images/book.svg" alt="black icon of an open book" id="bookLogo">
+            <h1>Library</h1>
+        </div>
     </header>
-<input type="submit" id="formPopup" value="New Book"></input>
-
+    <div id="popupButtonContainer">
+        <input type="submit" id="formPopup" value="Add a new book"></input>
+    </div>
     <div id="formAddBookContainer">
         <dialog id="dialog">
         <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
@@ -45,15 +54,31 @@
                     <!-- <option name="option" value="Reading now">Reading now</option> -->
                 </select>   
             </p>
-            <div>
+            <div id="formButtons">
                 <button value="cancel" id="closeButton" formmethod="dialog">Close</button>
                 <input type="submit" id="addBookButton" value="Add Book"></input>
             </div>
             
         </form>
         </dialog>
-    </div>
-<div id="allBooks"></div>
+
+    <main>
+        <div id="allBooks"></div>
+    </main>
+
 </div>
+
+<footer>
+<div class="footer">
+    <p>Copyright © 
+    <script>
+        document.write(new Date().getFullYear())
+    </script>
+    </p>
+    <a href="https://github.com/ArtemyOsovskoi">artemy.o</a>
+    <img class="githubicon" src="images/gitHubTransparent.png" width = "32px" height = "32px" alt="GitHub icon">
+</div>
+</footer>
+
 </body>
 </html>
