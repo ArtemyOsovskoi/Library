@@ -48,10 +48,12 @@ table {
     padding: 0;
 }
 
-html {
+html, body {
     background-color: #f9f9f9;
     font-family: 'Nunito', sans-serif;
+    height: 100%;
 }
+
 
 /* Header */
 
@@ -174,13 +176,13 @@ input {
     /* grid-template-rows: repeat(auto-fill, 240px); */
     gap: 16px;
     margin-top: 1rem;
-    
+    padding-bottom: 5rem;
 }
 
 main {
     padding-left: 4rem;
     padding-right: 4rem;
-    
+    padding-bottom: 2rem;
 }
 
 .bookCard {
@@ -191,6 +193,7 @@ main {
     background-color: #ebcbae;
     padding: 2rem 1rem 2rem 1rem;
     font-size: 1.4em;
+    box-shadow: 2px 2px 1px 1px #6d6666;
 
 }
 
@@ -217,18 +220,20 @@ main {
 
 /* Footer */
 
-footer {
-    margin-top: auto;
-    display: flex;
-    justify-content: center;
-}
+/* Доделать футер липкий к концу при добавлении новых книг без сливания с ними 14.11.23 в остальном все супер) */
+
 
 .footer {
+    background-color: #f0eeee;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 16px; 
     display: flex;
-    font-size: 16px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    justify-content: center;
     align-items: center;
+    box-shadow: 1px 1px 1px 0 rgba(0.1, 0.1, 0, 0);
 }
 
 .footer a {
@@ -241,6 +246,14 @@ footer {
 }
 
 .githubicon {
+    height: 24px;
+    width: 24px;
     background-color: transparent;
     margin-left: 10px;
+}
+
+#githubLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
