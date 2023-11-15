@@ -1,5 +1,5 @@
 # Library
-A small library app: add\modify\remove books you've read.
+A small library app: add\remove books.
 Live:https://artemyosovskoi.github.io/Library/
 # Overview
 Library project aims to show new js skills, especially working with objects.
