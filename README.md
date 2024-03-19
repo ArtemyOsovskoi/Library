@@ -15,6 +15,7 @@ I learned:
 - how to implement forms
 - how to manipulate arrays
 - more css grid practice
+- 19.03.24: how to use Classes. Code was refactored from constructors to Classes.
 
 ToDo:
 - add local storage
