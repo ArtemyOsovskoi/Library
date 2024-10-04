@@ -27,7 +27,8 @@
     <div id="formAddBookContainer">
         <dialog id="dialog">
         <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
-        <form id="form" method="dialog" onsubmit="return false"> 
+        <form id="form" method="dialog" onsubmit="return false" novalidate> 
+            <span id="errorMessage"></span>
             <p>
                 <label for="title">Title</label>
                 <br>
